@@ -1,0 +1,15 @@
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\bin\Debug\net8.0\sklepNaZaliczenie.exe
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\bin\Debug\net8.0\sklepNaZaliczenie.deps.json
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\bin\Debug\net8.0\sklepNaZaliczenie.runtimeconfig.json
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\bin\Debug\net8.0\sklepNaZaliczenie.dll
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\bin\Debug\net8.0\sklepNaZaliczenie.pdb
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\obj\Debug\net8.0\sklepNaZaliczenie.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\obj\Debug\net8.0\sklepNaZaliczenie.AssemblyInfoInputs.cache
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\obj\Debug\net8.0\sklepNaZaliczenie.AssemblyInfo.cs
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\obj\Debug\net8.0\sklepNaZaliczenie.csproj.CoreCompileInputs.cache
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\obj\Debug\net8.0\sklepNaZaliczenie.sourcelink.json
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\obj\Debug\net8.0\sklepNaZaliczenie.dll
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\obj\Debug\net8.0\refint\sklepNaZaliczenie.dll
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\obj\Debug\net8.0\sklepNaZaliczenie.pdb
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\obj\Debug\net8.0\sklepNaZaliczenie.genruntimeconfig.cache
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\obj\Debug\net8.0\ref\sklepNaZaliczenie.dll

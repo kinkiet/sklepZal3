@@ -1,0 +1,72 @@
+
+Dział Nabiałowy
+
+    Masło [15] [2.5$]
+    Ser [10] [4$]
+    Śmietana [20] [1$]
+    Mleko [10] [1.5$]
+    Kefir [12] [1.2$]
+
+Dział Mięsny
+
+    Kurczak [30] [4$]
+    Wołowina [20] [6$]
+    Szynka [25] [5$]
+    Boczek [15] [7$]
+    Kiełbasa [40] [3$]
+
+Dział Warzywny
+
+    Pomidor [50] [1$]
+    Ogórek [30] [1$]
+    Marchew [40] [1$]
+    Ziemniaki [100] [1$]
+    Cebula [50] [1$]
+
+Dział Owocowy
+
+    Truskawki [25] [3$]
+    Winogrona [20] [4$]
+    Pomarańcze [30] [2$]
+    Ananas [15] [3$]
+    Gruszki [20] [2$]
+
+Dział Pieczywa
+
+    Bułki [100] [1$]
+    Bagietki [30] [1$]
+    Rogale [50] [1$]
+    Chleb [20] [2$]
+    Drożdżówki [40] [2$]
+
+Dział Mrożonek
+
+    Pizza [30] [3$]
+    Lody [20] [5$]
+    Warzywa [50] [2$]
+    Frytki [40] [2$]
+    Filety [25] [4$]
+
+Dział Słodyczy
+
+    Czekolada [100] [2$]
+    Batoniki [200] [1$]
+    Ciastka [50] [2$]
+    Żelki [100] [1$]
+    Lizaki [150] [1$]
+
+Dział Napojów
+
+    Woda [200] [1$]
+    Cola [100] [2$]
+    Sok [50] [2$]
+    Piwo [100] [2$]
+    Wino [50] [10$]
+
+Dział Chemii Gospodarczej
+
+    PłynDoNaczyń [50] [2$]
+    ProszekDoPrania [30] [8$]
+    PłynDoPodłóg [40] [3$]
+    PapierToaletowy [100] [2$]
+    WorkiNaŚmieci [50] [1$]
