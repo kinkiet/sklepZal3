@@ -82,7 +82,7 @@ public class Program
             new Produkt("Wino", 50, 10m)
         });
 
-        Dzial dzialChemiiGospodarczej = new Dzial("Dział Chemii Gospodarczej", new Produkt[]
+        Dzial dzialChemii = new Dzial("Dział Chemii Gospodarczej", new Produkt[]
         {
             new Produkt("PłynDoNaczyń", 50, 2m),
             new Produkt("ProszekDoPrania", 30, 8m),
@@ -90,7 +90,7 @@ public class Program
             new Produkt("PapierToaletowy", 100, 2m),
             new Produkt("WorkiNaŚmieci", 50, 1m)
         });
-        var dzialy = new List<Dzial> { dzialNabialowy, dzialMiesny };
+        var dzialy = new List<Dzial> { dzialNabialowy, dzialMiesny, dzialWarzywny, dzialOwocowy, dzialPieczywa, dzialMrozonek, dzialSlodyczy, dzialNapojow, dzialChemii };
         dzialNabialowy.WyswietlProdukty();
         Menu(dzialy);
     }
@@ -152,67 +152,43 @@ public class Program
             Console.Write("Wybierz opcję: ");
             string choiceD = Console.ReadLine();
 
-            string path = "magazyn.txt";
-
-            //List<string> magazynL = new List<string>();
-
-            //try
-            //{
-
-            //    if (File.Exists(path))
-            //    {
-            //        magazynL = new List<string>(File.ReadAllLines(path));
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("Plik nie istnieje.");
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine("Wystąpił błąd podczas odczytu pliku: " + ex.Message);
-            //}
-
             switch (choiceD)
             {
                 case "1":
                     var dzialNabialowy = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Nabiałowy");
-
                     dzialNabialowy.WyswietlProdukty();
-                    //int[] dzial1 = { 1, 2, 3, 4, 5, 6, 7 };
-                    //ZawartoscDzialu(magazynL, dzial1);
                     break;
-                //case "2":
-                //    int[] dzial2 = { 9, 10, 11, 12, 13, 14, 15 };
-                //    ZawartoscDzialu(magazynL, dzial2);
-                //    break;
-                //case "3":
-                //    int[] dzial3 = { 17, 18, 19, 20, 21, 22, 23 };
-                //    ZawartoscDzialu(magazynL, dzial3);
-                //    break;
-                //case "4":
-                //    int[] dzial4 = { 25, 26, 27, 28, 29, 30, 31 };
-                //    ZawartoscDzialu(magazynL, dzial4);
-                //    break;
-                //case "5":
-                //    int[] dzial5 = { 33, 34, 35, 36, 37, 38, 39 };
-                //    ZawartoscDzialu(magazynL, dzial5);
-                //    break;
-                //case "6":
-                //    int[] dzial6 = { 41, 42, 43, 44, 45, 46, 47 };
-                //    ZawartoscDzialu(magazynL, dzial6);
-                //    break;
-                //case "7":
-                //    int[] dzial7 = { 49, 50, 51, 52, 53, 54, 55 };
-                //    ZawartoscDzialu(magazynL, dzial7);
-                //    break;
-                //case "8":
-                //    int[] dzial8 = { 57, 58, 59, 60, 61, 62, 63 };
-                //    ZawartoscDzialu(magazynL, dzial8);
-                //    break;
-                //case "9":
-                //    int[] dzial9 = { 65, 66, 67, 68, 69, 70, 71 };
-                //    ZawartoscDzialu(magazynL, dzial9);
+                case "2":
+                    var dzialMiesny = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Mięsny");
+                    dzialMiesny.WyswietlProdukty();
+                    break;
+                case "3":
+                    var dzialWarzywny = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Warzywny");
+                    dzialWarzywny.WyswietlProdukty();
+                    break;
+                case "4":
+                    var dzialOwocowy = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Owocowy");
+                    dzialOwocowy.WyswietlProdukty();
+                    break;
+                case "5":
+                    var dzialPieczywa = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Pieczywa");
+                    dzialPieczywa.WyswietlProdukty();
+                    break;
+                case "6":
+                    var dzialMrozonek = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Mrożonek");
+                    dzialMrozonek.WyswietlProdukty();
+                    break;
+                case "7":
+                    var dzialSlodyczy = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Słodyczy");
+                    dzialSlodyczy.WyswietlProdukty();
+                    break;
+                case "8":
+                    var dzialNapojow = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Napojów");
+                    dzialNapojow.WyswietlProdukty();
+                    break;
+                case "9":
+                    var dzialChemii = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Chemii Gospodarczej");
+                    dzialChemii.WyswietlProdukty();
                     break;
                 case "0":
 
