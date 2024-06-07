@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Xml.Linq;
+using static System.Net.WebRequestMethods;
 
 public class Program
 {
@@ -89,13 +90,13 @@ public class Program
             new Produkt("PapierToaletowy", 100, 2m),
             new Produkt("WorkiNaŚmieci", 50, 1m)
         });
-       
+        var dzialy = new List<Dzial> { dzialNabialowy, dzialMiesny };
         dzialNabialowy.WyswietlProdukty();
-        Menu();
+        Menu(dzialy);
     }
 
 
-    private static void Menu()
+    private static void Menu(List <Dzial> dzialy)
     {
         Console.WriteLine("Witaj w naszym sklepie!\n");
         Console.WriteLine("1 - Wejdź do sklepu");
@@ -110,7 +111,7 @@ public class Program
         switch (choice)
         {
             case "1":
-                wybieranieDzialu();
+                wybieranieDzialu(dzialy);
                 break;
             //case "2":
             //    pokazKoszyk();
@@ -119,7 +120,7 @@ public class Program
             //    kasa();
             //    break;
             case "4":
-                magazyn();
+               // magazyn();
                 break;
             case "5":
                 Environment.Exit(0);
@@ -130,9 +131,9 @@ public class Program
 
         }
 
+        
 
-
-        static void wybieranieDzialu()
+         void wybieranieDzialu(List <Dzial> dzialy)
         {
 
 
@@ -153,67 +154,69 @@ public class Program
 
             string path = "magazyn.txt";
 
-            List<string> magazynL = new List<string>();
+            //List<string> magazynL = new List<string>();
 
-            try
-            {
+            //try
+            //{
 
-                if (File.Exists(path))
-                {
-                    magazynL = new List<string>(File.ReadAllLines(path));
-                }
-                else
-                {
-                    Console.WriteLine("Plik nie istnieje.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Wystąpił błąd podczas odczytu pliku: " + ex.Message);
-            }
+            //    if (File.Exists(path))
+            //    {
+            //        magazynL = new List<string>(File.ReadAllLines(path));
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Plik nie istnieje.");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Wystąpił błąd podczas odczytu pliku: " + ex.Message);
+            //}
 
             switch (choiceD)
             {
                 case "1":
-                    Dzial.dzialNabialowy.WyswietlProdukty();
+                    var dzialNabialowy = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Nabiałowy");
+
+                    dzialNabialowy.WyswietlProdukty();
                     //int[] dzial1 = { 1, 2, 3, 4, 5, 6, 7 };
                     //ZawartoscDzialu(magazynL, dzial1);
                     break;
-                case "2":
-                    int[] dzial2 = { 9, 10, 11, 12, 13, 14, 15 };
-                    ZawartoscDzialu(magazynL, dzial2);
-                    break;
-                case "3":
-                    int[] dzial3 = { 17, 18, 19, 20, 21, 22, 23 };
-                    ZawartoscDzialu(magazynL, dzial3);
-                    break;
-                case "4":
-                    int[] dzial4 = { 25, 26, 27, 28, 29, 30, 31 };
-                    ZawartoscDzialu(magazynL, dzial4);
-                    break;
-                case "5":
-                    int[] dzial5 = { 33, 34, 35, 36, 37, 38, 39 };
-                    ZawartoscDzialu(magazynL, dzial5);
-                    break;
-                case "6":
-                    int[] dzial6 = { 41, 42, 43, 44, 45, 46, 47 };
-                    ZawartoscDzialu(magazynL, dzial6);
-                    break;
-                case "7":
-                    int[] dzial7 = { 49, 50, 51, 52, 53, 54, 55 };
-                    ZawartoscDzialu(magazynL, dzial7);
-                    break;
-                case "8":
-                    int[] dzial8 = { 57, 58, 59, 60, 61, 62, 63 };
-                    ZawartoscDzialu(magazynL, dzial8);
-                    break;
-                case "9":
-                    int[] dzial9 = { 65, 66, 67, 68, 69, 70, 71 };
-                    ZawartoscDzialu(magazynL, dzial9);
+                //case "2":
+                //    int[] dzial2 = { 9, 10, 11, 12, 13, 14, 15 };
+                //    ZawartoscDzialu(magazynL, dzial2);
+                //    break;
+                //case "3":
+                //    int[] dzial3 = { 17, 18, 19, 20, 21, 22, 23 };
+                //    ZawartoscDzialu(magazynL, dzial3);
+                //    break;
+                //case "4":
+                //    int[] dzial4 = { 25, 26, 27, 28, 29, 30, 31 };
+                //    ZawartoscDzialu(magazynL, dzial4);
+                //    break;
+                //case "5":
+                //    int[] dzial5 = { 33, 34, 35, 36, 37, 38, 39 };
+                //    ZawartoscDzialu(magazynL, dzial5);
+                //    break;
+                //case "6":
+                //    int[] dzial6 = { 41, 42, 43, 44, 45, 46, 47 };
+                //    ZawartoscDzialu(magazynL, dzial6);
+                //    break;
+                //case "7":
+                //    int[] dzial7 = { 49, 50, 51, 52, 53, 54, 55 };
+                //    ZawartoscDzialu(magazynL, dzial7);
+                //    break;
+                //case "8":
+                //    int[] dzial8 = { 57, 58, 59, 60, 61, 62, 63 };
+                //    ZawartoscDzialu(magazynL, dzial8);
+                //    break;
+                //case "9":
+                //    int[] dzial9 = { 65, 66, 67, 68, 69, 70, 71 };
+                //    ZawartoscDzialu(magazynL, dzial9);
                     break;
                 case "0":
 
-                    Menu();
+                    Menu(dzialy);
                     break;
                 default:
                     Console.WriteLine("Niepoprawny wybór.");
@@ -253,48 +256,7 @@ public class Program
 
         }
     }
-    static void magazyn()
-    {
-        //string path = "magazyn.txt";
-        //List<string> magazynN = new List<string>();
-        //try
-        //{
-
-        //    if (File.Exists(path))
-        //    {
-        //        magazynN = new List<string>(File.ReadAllLines(path));
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Plik nie istnieje.");
-        //    }
-        //}
-        //catch (Exception ex)
-        //{
-        //    Console.WriteLine("Wystąpił błąd podczas odczytu pliku: " + ex.Message);
-        //}
-
-        //Console.WriteLine(magazynN);
-        string magazynN = "magazyn.txt";
-
-        try
-        {
-            using (StreamReader reader = new StreamReader(magazynN))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    Console.WriteLine(line);
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("Wystąpił błąd podczas odczytu pliku:");
-            Console.WriteLine(e.Message);
-        }
-
-    }
+    
 
     static void Koszyk()
     {
@@ -327,6 +289,8 @@ public class Produkt
 
 public class Dzial
 {
+    Dzial[] dzialy;
+
     public string Nazwa { get; set; }
     public Produkt[] Produkty { get; set; }
 
