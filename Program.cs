@@ -1,102 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Xml.Linq;
-using static System.Net.WebRequestMethods;
+using System.Linq;
 
 public class Program
 {
-    //private static List<Koszyk> koszyk = new List<Koszyk>();
     public static void Main(string[] args)
     {
-        Dzial dzialNabialowy = new Dzial("Dział Nabiałowy", new Produkt[]
+        List<Dzial> dzialy = new List<Dzial>
         {
-            new Produkt("Masło", 15, 2.5m),
-            new Produkt("Ser", 10, 4m),
-            new Produkt("Śmietana", 20, 1m),
-            new Produkt("Mleko", 10, 1.5m),
-            new Produkt("Kefir", 12, 1.2m)
-        });
+            new NabialowyDzial(),
+            new MiesnyDzial(),
+            new WarzywnyDzial(),
+            new OwocowyDzial(),
+            new PieczywaDzial(),
+            new MrozonekDzial(),
+            new SlodyczyDzial(),
+            new NapojowDzial(),
+            new ChemiiDzial()
+        };
 
-        Dzial dzialMiesny = new Dzial("Dział Mięsny", new Produkt[]
-        {
-            new Produkt("Kurczak", 30, 4m),
-            new Produkt("Wołowina", 20, 6m),
-            new Produkt("Szynka", 25, 5m),
-            new Produkt("Boczek", 15, 7m),
-            new Produkt("Kiełbasa", 40, 3m)
-        });
-
-        Dzial dzialWarzywny = new Dzial("Dział Warzywny", new Produkt[]
-        {
-            new Produkt("Pomidor", 50, 1m),
-            new Produkt("Ogórek", 30, 1m),
-            new Produkt("Marchew", 40, 1m),
-            new Produkt("Ziemniaki", 100, 1m),
-            new Produkt("Cebula", 50, 1m)
-        });
-
-        Dzial dzialOwocowy = new Dzial("Dział Owocowy", new Produkt[]
-        {
-            new Produkt("Truskawki", 25, 3m),
-            new Produkt("Winogrona", 20, 4m),
-            new Produkt("Pomarańcze", 30, 2m),
-            new Produkt("Ananas", 15, 3m),
-            new Produkt("Gruszki", 20, 2m)
-        });
-
-        Dzial dzialPieczywa = new Dzial("Dział Pieczywa", new Produkt[]
-        {
-            new Produkt("Bułki", 100, 1m),
-            new Produkt("Bagietki", 30, 1m),
-            new Produkt("Rogale", 50, 1m),
-            new Produkt("Chleb", 20, 2m),
-            new Produkt("Drożdżówki", 40, 2m)
-        });
-
-        Dzial dzialMrozonek = new Dzial("Dział Mrożonek", new Produkt[]
-        {
-            new Produkt("Pizza", 30, 3m),
-            new Produkt("Lody", 20, 5m),
-            new Produkt("Warzywa", 50, 2m),
-            new Produkt("Frytki", 40, 2m),
-            new Produkt("Filety", 25, 4m)
-        });
-
-        Dzial dzialSlodyczy = new Dzial("Dział Słodyczy", new Produkt[]
-        {
-            new Produkt("Czekolada", 100, 2m),
-            new Produkt("Batoniki", 200, 1m),
-            new Produkt("Ciastka", 50, 2m),
-            new Produkt("Żelki", 100, 1m),
-            new Produkt("Lizaki", 150, 1m)
-        });
-
-        Dzial dzialNapojow = new Dzial("Dział Napojów", new Produkt[]
-        {
-            new Produkt("Woda", 200, 1m),
-            new Produkt("Cola", 100, 2m),
-            new Produkt("Sok", 50, 2m),
-            new Produkt("Piwo", 100, 2m),
-            new Produkt("Wino", 50, 10m)
-        });
-
-        Dzial dzialChemii = new Dzial("Dział Chemii Gospodarczej", new Produkt[]
-        {
-            new Produkt("PłynDoNaczyń", 50, 2m),
-            new Produkt("ProszekDoPrania", 30, 8m),
-            new Produkt("PłynDoPodłóg", 40, 3m),
-            new Produkt("PapierToaletowy", 100, 2m),
-            new Produkt("WorkiNaŚmieci", 50, 1m)
-        });
-        var dzialy = new List<Dzial> { dzialNabialowy, dzialMiesny, dzialWarzywny, dzialOwocowy, dzialPieczywa, dzialMrozonek, dzialSlodyczy, dzialNapojow, dzialChemii };
-        dzialNabialowy.WyswietlProdukty();
+        dzialy[0].WyswietlProdukty(); 
         Menu(dzialy);
     }
 
-
-    private static void Menu(List <Dzial> dzialy)
+    public static void Menu(List<Dzial> dzialy)
     {
         Console.WriteLine("Witaj w naszym sklepie!\n");
         Console.WriteLine("1 - Wejdź do sklepu");
@@ -120,7 +47,7 @@ public class Program
             //    kasa();
             //    break;
             case "4":
-               // magazyn();
+                // magazyn();
                 break;
             case "5":
                 Environment.Exit(0);
@@ -128,121 +55,53 @@ public class Program
             default:
                 Console.WriteLine("Niepoprawny wybór.");
                 break;
-
-        }
-
-        
-
-         void wybieranieDzialu(List <Dzial> dzialy)
-        {
-
-
-            Console.WriteLine("Wybierz dział:\n");
-            Console.WriteLine("1 - Nabiał");
-            Console.WriteLine("2 - Mięsny");
-            Console.WriteLine("3 - Warzywny");
-            Console.WriteLine("4 - Owocowy");
-            Console.WriteLine("5 - Pieczywa");
-            Console.WriteLine("6 - Mrożonki");
-            Console.WriteLine("7 - Słodycze");
-            Console.WriteLine("8 - Napoje");
-            Console.WriteLine("9 - Chemia Gospodarcza");
-            Console.WriteLine("0 - Wyjście");
-
-            Console.Write("Wybierz opcję: ");
-            string choiceD = Console.ReadLine();
-
-            switch (choiceD)
-            {
-                case "1":
-                    var dzialNabialowy = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Nabiałowy");
-                    dzialNabialowy.WyswietlProdukty();
-                    break;
-                case "2":
-                    var dzialMiesny = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Mięsny");
-                    dzialMiesny.WyswietlProdukty();
-                    break;
-                case "3":
-                    var dzialWarzywny = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Warzywny");
-                    dzialWarzywny.WyswietlProdukty();
-                    break;
-                case "4":
-                    var dzialOwocowy = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Owocowy");
-                    dzialOwocowy.WyswietlProdukty();
-                    break;
-                case "5":
-                    var dzialPieczywa = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Pieczywa");
-                    dzialPieczywa.WyswietlProdukty();
-                    break;
-                case "6":
-                    var dzialMrozonek = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Mrożonek");
-                    dzialMrozonek.WyswietlProdukty();
-                    break;
-                case "7":
-                    var dzialSlodyczy = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Słodyczy");
-                    dzialSlodyczy.WyswietlProdukty();
-                    break;
-                case "8":
-                    var dzialNapojow = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Napojów");
-                    dzialNapojow.WyswietlProdukty();
-                    break;
-                case "9":
-                    var dzialChemii = dzialy.FirstOrDefault(d => d.Nazwa == "Dział Chemii Gospodarczej");
-                    dzialChemii.WyswietlProdukty();
-                    break;
-                case "0":
-
-                    Menu(dzialy);
-                    break;
-                default:
-                    Console.WriteLine("Niepoprawny wybór.");
-                    break;
-
-            }
-
-            static void ZawartoscDzialu(List<string> magazynL, int[] dzialy)
-            {
-                foreach (int index in dzialy)
-                {
-                    if (index >= 0 && index < magazynL.Count)
-                    {
-                        Console.WriteLine(magazynL[index]);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Indeks {index} jest poza zakresem.");
-                    }
-                }
-            }
-
-            static void Kupowanie()
-            {
-
-
-            }
-
-            //private static void pokazKoszyk()
-            //{
-
-            //}
-            //private static void kasa()
-            //{
-
-            //}
-
         }
     }
-    
 
-    static void Koszyk()
+    public static void wybieranieDzialu(List<Dzial> dzialy)
     {
+        Console.WriteLine("Wybierz dział:\n");
+        Console.WriteLine("1 - Nabiał");
+        Console.WriteLine("2 - Mięsny");
+        Console.WriteLine("3 - Warzywny");
+        Console.WriteLine("4 - Owocowy");
+        Console.WriteLine("5 - Pieczywa");
+        Console.WriteLine("6 - Mrożonki");
+        Console.WriteLine("7 - Słodycze");
+        Console.WriteLine("8 - Napoje");
+        Console.WriteLine("9 - Chemia Gospodarcza");
+        Console.WriteLine("0 - Wyjście");
 
+        Console.Write("Wybierz opcję: ");
+        string choiceD = Console.ReadLine();
 
+        Dzial selectedDzial = choiceD switch
+        {
+            "1" => dzialy.OfType<NabialowyDzial>().FirstOrDefault(),
+            "2" => dzialy.OfType<MiesnyDzial>().FirstOrDefault(),
+            "3" => dzialy.OfType<WarzywnyDzial>().FirstOrDefault(),
+            "4" => dzialy.OfType<OwocowyDzial>().FirstOrDefault(),
+            "5" => dzialy.OfType<PieczywaDzial>().FirstOrDefault(),
+            "6" => dzialy.OfType<MrozonekDzial>().FirstOrDefault(),
+            "7" => dzialy.OfType<SlodyczyDzial>().FirstOrDefault(),
+            "8" => dzialy.OfType<NapojowDzial>().FirstOrDefault(),
+            "9" => dzialy.OfType<ChemiiDzial>().FirstOrDefault(),
+            "0" => null,
+            _ => null
+        };
+
+        if (selectedDzial != null)
+        {
+            selectedDzial.WyswietlProdukty();
+            Koszyk.zakupy(dzialy, selectedDzial);
+        }
+        else
+        {
+            Menu(dzialy); 
+        }
+        //Koszyk.zakupy(dzialy);
     }
-
-    
 }
-
 
 public class Produkt
 {
@@ -265,8 +124,6 @@ public class Produkt
 
 public class Dzial
 {
-    Dzial[] dzialy;
-
     public string Nazwa { get; set; }
     public Produkt[] Produkty { get; set; }
 
@@ -285,19 +142,192 @@ public class Dzial
         }
         Console.WriteLine();
     }
-
 }
 
-public class Zawartosc
+public class NabialowyDzial : Dzial
 {
+    public NabialowyDzial() : base("Dział Nabiałowy", new Produkt[]
+    {
+        new Produkt("Masło", 15, 2.5m),
+        new Produkt("Ser", 10, 4m),
+        new Produkt("Śmietana", 20, 1m),
+        new Produkt("Mleko", 10, 1.5m),
+        new Produkt("Kefir", 12, 1.2m)
+    })
+    { }
+}
 
+public class MiesnyDzial : Dzial
+{
+    public MiesnyDzial() : base("Dział Mięsny", new Produkt[]
+    {
+        new Produkt("Kurczak", 30, 4m),
+        new Produkt("Wołowina", 20, 6m),
+        new Produkt("Szynka", 25, 5m),
+        new Produkt("Boczek", 15, 7m),
+        new Produkt("Kiełbasa", 40, 3m)
+    })
+    { }
+}
 
+public class WarzywnyDzial : Dzial
+{
+    public WarzywnyDzial() : base("Dział Warzywny", new Produkt[]
+    {
+        new Produkt("Pomidor", 50, 1m),
+        new Produkt("Ogórek", 30, 1m),
+        new Produkt("Marchew", 40, 1m),
+        new Produkt("Ziemniaki", 100, 1m),
+        new Produkt("Cebula", 50, 1m)
+    })
+    { }
+}
+
+public class OwocowyDzial : Dzial
+{
+    public OwocowyDzial() : base("Dział Owocowy", new Produkt[]
+    {
+        new Produkt("Truskawki", 25, 3m),
+        new Produkt("Winogrona", 20, 4m),
+        new Produkt("Pomarańcze", 30, 2m),
+        new Produkt("Ananas", 15, 3m),
+        new Produkt("Gruszki", 20, 2m)
+    })
+    { }
+}
+
+public class PieczywaDzial : Dzial
+{
+    public PieczywaDzial() : base("Dział Pieczywa", new Produkt[]
+    {
+        new Produkt("Bułki", 100, 1m),
+        new Produkt("Bagietki", 30, 1m),
+        new Produkt("Rogale", 50, 1m),
+        new Produkt("Chleb", 20, 2m),
+        new Produkt("Drożdżówki", 40, 2m)
+    })
+    { }
+}
+
+public class MrozonekDzial : Dzial
+{
+    public MrozonekDzial() : base("Dział Mrożonek", new Produkt[]
+    {
+        new Produkt("Pizza", 30, 3m),
+        new Produkt("Lody", 20, 5m),
+        new Produkt("Warzywa", 50, 2m),
+        new Produkt("Frytki", 40, 2m),
+        new Produkt("Filety", 25, 4m)
+    })
+    { }
+}
+
+public class SlodyczyDzial : Dzial
+{
+    public SlodyczyDzial() : base("Dział Słodyczy", new Produkt[]
+    {
+        new Produkt("Czekolada", 100, 2m),
+        new Produkt("Batoniki", 200, 1m),
+        new Produkt("Ciastka", 50, 2m),
+        new Produkt("Żelki", 100, 1m),
+        new Produkt("Lizaki", 150, 1m)
+    })
+    { }
+}
+
+public class NapojowDzial : Dzial
+{
+    public NapojowDzial() : base("Dział Napojów", new Produkt[]
+    {
+        new Produkt("Woda", 200, 1m),
+        new Produkt("Cola", 100, 2m),
+        new Produkt("Sok", 50, 2m),
+        new Produkt("Piwo", 100, 2m),
+        new Produkt("Wino", 50, 10m)
+    })
+    { }
+}
+
+public class ChemiiDzial : Dzial
+{
+    public ChemiiDzial() : base("Dział Chemii Gospodarczej", new Produkt[]
+    {
+        new Produkt("PłynDoNaczyń", 50, 2m),
+        new Produkt("ProszekDoPrania", 30, 8m),
+        new Produkt("PłynDoPodłóg", 40, 3m),
+        new Produkt("PapierToaletowy", 100, 2m),
+        new Produkt("WorkiNaŚmieci", 50, 1m)
+    })
+    { }
 }
 
 public class Koszyk
 {
-    //public List<Zawartosc> Zawartosc { get; set; } = new List<Zawartosc>
+    public static List<Produkt> koszyk = new List<Produkt>();
+    public static void zakupy(List<Dzial> dzialy, Dzial dzial)
+    {
+        
+        Console.WriteLine("Czy chcesz coś stąd wsadzić do koszyka? \n y-tak n-nie\n");
+        string za = Console.ReadLine();
+        switch (za)
+        {
+            case "y":
+                wybierzProdukt(dzialy, dzial);
+                break;
+            case "n":
+                Program.wybieranieDzialu(dzialy);
+                break;
+            default:
+                Console.WriteLine("wpisano niepoprawną opcję");
+                zakupy(dzialy, dzial);
+                break;
+        }
+   
+            
+    }
+    public static void wybierzProdukt(List <Dzial> dzialy, Dzial dzial)
+    {
 
+
+        Console.Write("Wybierz produkt (numer): ");
+        if (int.TryParse(Console.ReadLine(), out int productIndex) && productIndex >= 0 && productIndex < dzial.Produkty.Length)
+        {
+
+            Produkt wybranyProdukt = dzial.Produkty[productIndex];
+            Console.Write("Podaj ilość: ");
+            if (int.TryParse(Console.ReadLine(), out int amount))
+            {
+                int wybranaIlosc = wybranyProdukt.Ilosc;
+
+                if (amount > wybranaIlosc)
+                {
+                    Console.WriteLine("Nie ma wystarczającej ilości produktu.");
+                    wybierzProdukt(dzialy, dzial); 
+                }
+                else
+                {
+                    wybranyProdukt.Ilosc -= amount; // Zmniejszamy ilość produktu w magazynie
+                    koszyk.Add(new Produkt(wybranyProdukt.Nazwa, amount, wybranyProdukt.Cena));
+                    Console.WriteLine($"{amount} sztuk {wybranyProdukt.Nazwa} zostało dodanych do koszyka.");
+                    zakupy(dzialy, dzial);
+                }
+            }
+        else
+        {
+            Console.WriteLine("Niepoprawny wybór produktu.");
+            wybierzProdukt(dzialy, dzial);
+        }
+        
+        
+           
+        
+    }
+        
+
+
+
+
+    }
 
 }
 

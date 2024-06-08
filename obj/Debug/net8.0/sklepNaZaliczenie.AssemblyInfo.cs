@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("sklepNaZaliczenie")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0a9ce96f2a247f87543f6d5459ee855c2f91312d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92254df32a41562d2d2245b20878c5f3f1fdc9b2")]
 [assembly: System.Reflection.AssemblyProductAttribute("sklepNaZaliczenie")]
 [assembly: System.Reflection.AssemblyTitleAttribute("sklepNaZaliczenie")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
