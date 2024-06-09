@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 public class Program
@@ -19,83 +20,99 @@ public class Program
             new ChemiiDzial()
         };
 
-        dzialy[0].WyswietlProdukty(); 
         Menu(dzialy);
     }
 
     public static void Menu(List<Dzial> dzialy)
     {
-        Console.WriteLine("Witaj w naszym sklepie!\n");
-        Console.WriteLine("1 - Wejdź do sklepu");
-        Console.WriteLine("2 - Pokaż koszyk");
-        Console.WriteLine("3 - Idź do kasy");
-        Console.WriteLine("4 - Wyjście");
-
-        Console.Write("Wybierz opcję: ");
-        string choice = Console.ReadLine();
-
-        switch (choice)
+        while (true)
         {
-            case "1":
-                wybieranieDzialu(dzialy);
-                break;
-            case "2":
-                Koszyk.PokazKoszyk();
-               break;
-            case "3":
-                Kasa.rachunek();
-                break;
-            case "4":
-                Environment.Exit(0);
-                break;
-            default:
-                Console.WriteLine("Niepoprawny wybór.");
-                break;
+            try
+            {
+                Console.WriteLine("Witaj w naszym sklepie!\n");
+                Console.WriteLine("1 - Wejdź do sklepu");
+                Console.WriteLine("2 - Pokaż koszyk");
+                Console.WriteLine("3 - Idź do kasy");
+                Console.WriteLine("4 - Wyjście");
+
+                Console.Write("Wybierz opcję: ");
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        wybieranieDzialu(dzialy);
+                        break;
+                    case "2":
+                        Koszyk.PokazKoszyk();
+                        break;
+                    case "3":
+                        Kasa.rachunek();
+                        break;
+                    case "4":
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("Niepoprawny wybór.");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Wystąpił błąd: {ex.Message}");
+            }
         }
     }
 
     public static void wybieranieDzialu(List<Dzial> dzialy)
     {
-        Console.WriteLine("Wybierz dział:\n");
-        Console.WriteLine("1 - Nabiał");
-        Console.WriteLine("2 - Mięsny");
-        Console.WriteLine("3 - Warzywny");
-        Console.WriteLine("4 - Owocowy");
-        Console.WriteLine("5 - Pieczywa");
-        Console.WriteLine("6 - Mrożonki");
-        Console.WriteLine("7 - Słodycze");
-        Console.WriteLine("8 - Napoje");
-        Console.WriteLine("9 - Chemia Gospodarcza");
-        Console.WriteLine("0 - Wyjście");
-
-        Console.Write("Wybierz opcję: ");
-        string choiceD = Console.ReadLine();
-
-        Dzial selectedDzial = choiceD switch
+        try
         {
-            "1" => dzialy.OfType<NabialowyDzial>().FirstOrDefault(),
-            "2" => dzialy.OfType<MiesnyDzial>().FirstOrDefault(),
-            "3" => dzialy.OfType<WarzywnyDzial>().FirstOrDefault(),
-            "4" => dzialy.OfType<OwocowyDzial>().FirstOrDefault(),
-            "5" => dzialy.OfType<PieczywaDzial>().FirstOrDefault(),
-            "6" => dzialy.OfType<MrozonekDzial>().FirstOrDefault(),
-            "7" => dzialy.OfType<SlodyczyDzial>().FirstOrDefault(),
-            "8" => dzialy.OfType<NapojowDzial>().FirstOrDefault(),
-            "9" => dzialy.OfType<ChemiiDzial>().FirstOrDefault(),
-            "0" => null,
-            _ => null
-        };
+            Console.WriteLine("Wybierz dział:\n");
+            Console.WriteLine("1 - Nabiał");
+            Console.WriteLine("2 - Mięsny");
+            Console.WriteLine("3 - Warzywny");
+            Console.WriteLine("4 - Owocowy");
+            Console.WriteLine("5 - Pieczywa");
+            Console.WriteLine("6 - Mrożonki");
+            Console.WriteLine("7 - Słodycze");
+            Console.WriteLine("8 - Napoje");
+            Console.WriteLine("9 - Chemia Gospodarcza");
+            Console.WriteLine("0 - Wyjście");
 
-        if (selectedDzial != null)
-        {
-            selectedDzial.WyswietlProdukty();
-            Koszyk.zakupy(dzialy, selectedDzial);
+            Console.Write("Wybierz opcję: ");
+            string choiceD = Console.ReadLine();
+
+            Dzial selectedDzial = choiceD switch
+            {
+                "1" => dzialy.OfType<NabialowyDzial>().FirstOrDefault(),
+                "2" => dzialy.OfType<MiesnyDzial>().FirstOrDefault(),
+                "3" => dzialy.OfType<WarzywnyDzial>().FirstOrDefault(),
+                "4" => dzialy.OfType<OwocowyDzial>().FirstOrDefault(),
+                "5" => dzialy.OfType<PieczywaDzial>().FirstOrDefault(),
+                "6" => dzialy.OfType<MrozonekDzial>().FirstOrDefault(),
+                "7" => dzialy.OfType<SlodyczyDzial>().FirstOrDefault(),
+                "8" => dzialy.OfType<NapojowDzial>().FirstOrDefault(),
+                "9" => dzialy.OfType<ChemiiDzial>().FirstOrDefault(),
+                "0" => null,
+                _ => null
+            };
+
+            if (selectedDzial != null)
+            {
+                selectedDzial.WyswietlProdukty();
+                Koszyk.zakupy(dzialy, selectedDzial);
+            }
+            else
+            {
+                Menu(dzialy);
+            }
         }
-        else
+        catch (Exception ex)
         {
-            Menu(dzialy); 
+            Console.WriteLine($"Wystąpił błąd: {ex.Message}");
+            Menu(dzialy);
         }
-        //Koszyk.zakupy(dzialy);
     }
 }
 
@@ -260,51 +277,63 @@ public class ChemiiDzial : Dzial
 public class Koszyk
 {
     public static List<Produkt> koszyk = new List<Produkt>();
+
     public static void zakupy(List<Dzial> dzialy, Dzial dzial)
-    {        
-        Console.WriteLine("Czy chcesz coś stąd wsadzić do koszyka? \n y-tak n-nie\n");
-        string za = Console.ReadLine();
-        switch (za)
-        {
-            case "y":
-                wybierzProdukt(dzialy, dzial);
-                break;
-            case "n":
-                Program.wybieranieDzialu(dzialy);
-                break;
-            default:
-                Console.WriteLine("wpisano niepoprawną opcję");
-                zakupy(dzialy, dzial);
-                break;
-        }
-   
-            
-    }
-    public static void wybierzProdukt(List <Dzial> dzialy, Dzial dzial)
     {
-
-
-        Console.Write("Wybierz produkt (numer): ");
-        if (int.TryParse(Console.ReadLine(), out int productIndex) && productIndex >= 0 && productIndex < dzial.Produkty.Length)
+        try
         {
-
-            Produkt wybranyProdukt = dzial.Produkty[productIndex];
-            Console.Write("Podaj ilość: ");
-            if (int.TryParse(Console.ReadLine(), out int amount))
+            Console.WriteLine("Czy chcesz coś stąd wsadzić do koszyka? \n y-tak n-nie\n");
+            string za = Console.ReadLine();
+            switch (za)
             {
-                int wybranaIlosc = wybranyProdukt.Ilosc;
+                case "y":
+                    wybierzProdukt(dzialy, dzial);
+                    break;
+                case "n":
+                    Program.wybieranieDzialu(dzialy);
+                    break;
+                default:
+                    Console.WriteLine("Wpisano niepoprawną opcję");
+                    zakupy(dzialy, dzial);
+                    break;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Wystąpił błąd: {ex.Message}");
+        }
+    }
 
-                if (amount > wybranaIlosc)
+    public static void wybierzProdukt(List<Dzial> dzialy, Dzial dzial)
+    {
+        try
+        {
+            Console.Write("Wybierz produkt (numer): ");
+            if (int.TryParse(Console.ReadLine(), out int productIndex) && productIndex >= 0 && productIndex < dzial.Produkty.Length)
+            {
+                Produkt wybranyProdukt = dzial.Produkty[productIndex];
+                Console.Write("Podaj ilość: ");
+                if (int.TryParse(Console.ReadLine(), out int amount))
                 {
-                    Console.WriteLine("Nie ma wystarczającej ilości produktu.");
-                    wybierzProdukt(dzialy, dzial); 
+                    int wybranaIlosc = wybranyProdukt.Ilosc;
+
+                    if (amount > wybranaIlosc)
+                    {
+                        Console.WriteLine("Nie ma wystarczającej ilości produktu.");
+                        wybierzProdukt(dzialy, dzial);
+                    }
+                    else
+                    {
+                        wybranyProdukt.Ilosc -= amount;
+                        koszyk.Add(new Produkt(wybranyProdukt.Nazwa, amount, wybranyProdukt.Cena));
+                        Console.WriteLine($"{amount} sztuk {wybranyProdukt.Nazwa} zostało dodanych do koszyka.");
+                        zakupy(dzialy, dzial);
+                    }
                 }
                 else
                 {
-                    wybranyProdukt.Ilosc -= amount; // Zmniejszamy ilość produktu w magazynie
-                    koszyk.Add(new Produkt(wybranyProdukt.Nazwa, amount, wybranyProdukt.Cena));
-                    Console.WriteLine($"{amount} sztuk {wybranyProdukt.Nazwa} zostało dodanych do koszyka.");
-                    zakupy(dzialy, dzial);
+                    Console.WriteLine("Niepoprawna ilość.");
+                    wybierzProdukt(dzialy, dzial);
                 }
             }
             else
@@ -313,62 +342,76 @@ public class Koszyk
                 wybierzProdukt(dzialy, dzial);
             }
         }
-
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Wystąpił błąd: {ex.Message}");
+        }
     }
 
     public static void PokazKoszyk()
     {
-        if (koszyk.Count == 0)
+        try
         {
-            Console.WriteLine("Koszyk jest pusty.");
-        }
-        else
-        {
-            Console.WriteLine("Zawartość koszyka:");
-            foreach (var produkt in koszyk)
+            if (koszyk.Count == 0)
             {
-                Console.WriteLine(produkt);
+                Console.WriteLine("Koszyk jest pusty.");
+            }
+            else
+            {
+                Console.WriteLine("Zawartość koszyka:");
+                foreach (var produkt in koszyk)
+                {
+                    Console.WriteLine(produkt);
+                }
+            }
+            Console.WriteLine("Czy chcesz coś wyjąć z koszyka? y-tak n-nie:\n");
+            string remove = Console.ReadLine();
+
+            switch (remove)
+            {
+                case "y":
+                    UsunZKoszyka();
+                    break;
+                case "n":
+                    Program.Menu(new List<Dzial>());
+                    break;
+                default:
+                    Console.WriteLine("Niepoprawny wybór.");
+                    PokazKoszyk();
+                    break;
             }
         }
-        Console.WriteLine("Czy chcesz cos wyjąć z koszyka? y-tak n-nie:\n");
-        string remove = Console.ReadLine();
-
-        switch (remove)
+        catch (Exception ex)
         {
-            case "y":
-                UsunZKoszyka();
-                break;
-            case "n":
-                Program.Menu(new List<Dzial>());
-                break;
-            default:
-                Console.WriteLine("niepoprawny wybór");
-                PokazKoszyk();
-                break;
-                
+            Console.WriteLine($"Wystąpił błąd: {ex.Message}");
         }
-
     }
 
     public static void UsunZKoszyka()
     {
-        if (koszyk.Count > 0)
+        try
         {
-            Console.Write("Wybierz produkt do usunięcia (numer): ");
-            if (int.TryParse(Console.ReadLine(), out int productIndex) && productIndex >= 0 && productIndex < koszyk.Count)
+            if (koszyk.Count > 0)
             {
-                Produkt usunietyProdukt = koszyk[productIndex];
-                koszyk.RemoveAt(productIndex);
-                Console.WriteLine($"{usunietyProdukt.Nazwa} został usunięty z koszyka.");
+                Console.Write("Wybierz produkt do usunięcia (numer): ");
+                if (int.TryParse(Console.ReadLine(), out int productIndex) && productIndex >= 0 && productIndex < koszyk.Count)
+                {
+                    Produkt usunietyProdukt = koszyk[productIndex];
+                    koszyk.RemoveAt(productIndex);
+                    Console.WriteLine($"{usunietyProdukt.Nazwa} został usunięty z koszyka.");
+                }
+                else
+                {
+                    Console.WriteLine("Niepoprawny wybór.");
+                }
             }
-            else
-            {
-                Console.WriteLine("Niepoprawny wybór.");
-            }
+            PokazKoszyk();
         }
-        PokazKoszyk();
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Wystąpił błąd: {ex.Message}");
+        }
     }
-
 }
 
 public class Kasa
@@ -377,21 +420,49 @@ public class Kasa
     {
         return Koszyk.koszyk.Sum(p => p.Cena * p.Ilosc);
     }
+
     public static void rachunek()
     {
-        foreach (var produkt in Koszyk.koszyk)
+        try
         {
-            Console.WriteLine(produkt);
+            List<string> rachunekZawartosc = new List<string>();
+
+            foreach (var produkt in Koszyk.koszyk)
+            {
+                string produktInfo = produkt.ToString();
+                Console.WriteLine(produktInfo);
+                rachunekZawartosc.Add(produktInfo);
+            }
+
+            string lacznaCena = $"Łączna cena: {ObliczLacznaCene():C}";
+            Console.WriteLine(lacznaCena);
+            rachunekZawartosc.Add(lacznaCena);
+
+            string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            string fileName = $"rachunek_{timestamp}.txt";
+
+            while (true)
+            {
+                Console.WriteLine("Czy chcesz zachować rachunek?\n y- tak n - nie");
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "y":
+                        File.WriteAllLines(fileName, rachunekZawartosc);
+                        Console.WriteLine($"Rachunek został zapisany do pliku '{fileName}'.");
+                        break;
+                    case "n":
+                        return;
+                    default:
+                        Console.WriteLine("Nieprawidłowy wybór.");
+                        break;
+                }
+            }
         }
-
-        Console.WriteLine($"Łączna cena: {ObliczLacznaCene():C}");
-
-        Console.WriteLine("Czy chcesz zachować rachunek?");
-
-
-
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Wystąpił błąd: {ex.Message}");
+        }
     }
-
 }
-
-
