@@ -1,0 +1,12 @@
+C:\Users\kinkiet\source\repos\BibliotekaSklep\bin\Debug\net8.0\BibliotekaSklep.deps.json
+C:\Users\kinkiet\source\repos\BibliotekaSklep\bin\Debug\net8.0\BibliotekaSklep.dll
+C:\Users\kinkiet\source\repos\BibliotekaSklep\bin\Debug\net8.0\BibliotekaSklep.pdb
+C:\Users\kinkiet\source\repos\BibliotekaSklep\obj\Debug\net8.0\BibliotekaSklep.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kinkiet\source\repos\BibliotekaSklep\obj\Debug\net8.0\BibliotekaSklep.AssemblyInfoInputs.cache
+C:\Users\kinkiet\source\repos\BibliotekaSklep\obj\Debug\net8.0\BibliotekaSklep.AssemblyInfo.cs
+C:\Users\kinkiet\source\repos\BibliotekaSklep\obj\Debug\net8.0\BibliotekaSklep.csproj.CoreCompileInputs.cache
+C:\Users\kinkiet\source\repos\BibliotekaSklep\obj\Debug\net8.0\BibliotekaSklep.sourcelink.json
+C:\Users\kinkiet\source\repos\BibliotekaSklep\obj\Debug\net8.0\BibliotekaSklep.dll
+C:\Users\kinkiet\source\repos\BibliotekaSklep\obj\Debug\net8.0\refint\BibliotekaSklep.dll
+C:\Users\kinkiet\source\repos\BibliotekaSklep\obj\Debug\net8.0\BibliotekaSklep.pdb
+C:\Users\kinkiet\source\repos\BibliotekaSklep\obj\Debug\net8.0\ref\BibliotekaSklep.dll
