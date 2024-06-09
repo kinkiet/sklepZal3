@@ -13,3 +13,7 @@ C:\Users\kinkiet\source\repos\sklepNaZaliczenie\obj\Debug\net8.0\refint\sklepNaZ
 C:\Users\kinkiet\source\repos\sklepNaZaliczenie\obj\Debug\net8.0\sklepNaZaliczenie.pdb
 C:\Users\kinkiet\source\repos\sklepNaZaliczenie\obj\Debug\net8.0\sklepNaZaliczenie.genruntimeconfig.cache
 C:\Users\kinkiet\source\repos\sklepNaZaliczenie\obj\Debug\net8.0\ref\sklepNaZaliczenie.dll
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\bin\Debug\net8.0\BibliotekaSklep.dll
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\bin\Debug\net8.0\BibliotekaSklep.pdb
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\obj\Debug\net8.0\sklepNaZaliczenie.csproj.AssemblyReference.cache
+C:\Users\kinkiet\source\repos\sklepNaZaliczenie\obj\Debug\net8.0\sklepNaZ.0D77B42D.Up2Date

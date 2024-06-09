@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v8.0": {
       "sklepNaZaliczenie/1.0.0": {
+        "dependencies": {
+          "BibliotekaSklep": "1.0.0"
+        },
         "runtime": {
           "sklepNaZaliczenie.dll": {}
+        }
+      },
+      "BibliotekaSklep/1.0.0": {
+        "runtime": {
+          "BibliotekaSklep.dll": {}
         }
       }
     }
   },
   "libraries": {
     "sklepNaZaliczenie/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BibliotekaSklep/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
