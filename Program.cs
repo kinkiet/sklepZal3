@@ -29,8 +29,7 @@ public class Program
         Console.WriteLine("1 - Wejdź do sklepu");
         Console.WriteLine("2 - Pokaż koszyk");
         Console.WriteLine("3 - Idź do kasy");
-        Console.WriteLine("4 - Magazyn");
-        Console.WriteLine("5 - Wyjście");
+        Console.WriteLine("4 - Wyjście");
 
         Console.Write("Wybierz opcję: ");
         string choice = Console.ReadLine();
@@ -40,16 +39,13 @@ public class Program
             case "1":
                 wybieranieDzialu(dzialy);
                 break;
-            //case "2":
-            //    pokazKoszyk();
-            //    break;
-            //case "3":
-            //    kasa();
-            //    break;
-            case "4":
-                // magazyn();
+            case "2":
+                Koszyk.PokazKoszyk();
+               break;
+            case "3":
+                Kasa.rachunek();
                 break;
-            case "5":
+            case "4":
                 Environment.Exit(0);
                 break;
             default:
@@ -136,9 +132,9 @@ public class Dzial
     public void WyswietlProdukty()
     {
         Console.WriteLine(Nazwa);
-        foreach (var produkt in Produkty)
+        for (int i = 0; i < Produkty.Length; i++)
         {
-            Console.WriteLine($"    {produkt}");
+            Console.WriteLine($"{i} - {Produkty[i]}");
         }
         Console.WriteLine();
     }
@@ -265,8 +261,7 @@ public class Koszyk
 {
     public static List<Produkt> koszyk = new List<Produkt>();
     public static void zakupy(List<Dzial> dzialy, Dzial dzial)
-    {
-        
+    {        
         Console.WriteLine("Czy chcesz coś stąd wsadzić do koszyka? \n y-tak n-nie\n");
         string za = Console.ReadLine();
         switch (za)
@@ -312,18 +307,86 @@ public class Koszyk
                     zakupy(dzialy, dzial);
                 }
             }
+            else
+            {
+                Console.WriteLine("Niepoprawny wybór produktu.");
+                wybierzProdukt(dzialy, dzial);
+            }
+        }
+
+    }
+
+    public static void PokazKoszyk()
+    {
+        if (koszyk.Count == 0)
+        {
+            Console.WriteLine("Koszyk jest pusty.");
+        }
         else
         {
-            Console.WriteLine("Niepoprawny wybór produktu.");
-            wybierzProdukt(dzialy, dzial);
+            Console.WriteLine("Zawartość koszyka:");
+            foreach (var produkt in koszyk)
+            {
+                Console.WriteLine(produkt);
+            }
         }
-        
-        
-           
-        
-    }
-        
+        Console.WriteLine("Czy chcesz cos wyjąć z koszyka? y-tak n-nie:\n");
+        string remove = Console.ReadLine();
 
+        switch (remove)
+        {
+            case "y":
+                UsunZKoszyka();
+                break;
+            case "n":
+                Program.Menu(new List<Dzial>());
+                break;
+            default:
+                Console.WriteLine("niepoprawny wybór");
+                PokazKoszyk();
+                break;
+                
+        }
+
+    }
+
+    public static void UsunZKoszyka()
+    {
+        if (koszyk.Count > 0)
+        {
+            Console.Write("Wybierz produkt do usunięcia (numer): ");
+            if (int.TryParse(Console.ReadLine(), out int productIndex) && productIndex >= 0 && productIndex < koszyk.Count)
+            {
+                Produkt usunietyProdukt = koszyk[productIndex];
+                koszyk.RemoveAt(productIndex);
+                Console.WriteLine($"{usunietyProdukt.Nazwa} został usunięty z koszyka.");
+            }
+            else
+            {
+                Console.WriteLine("Niepoprawny wybór.");
+            }
+        }
+        PokazKoszyk();
+    }
+
+}
+
+public class Kasa
+{
+    public static decimal ObliczLacznaCene()
+    {
+        return Koszyk.koszyk.Sum(p => p.Cena * p.Ilosc);
+    }
+    public static void rachunek()
+    {
+        foreach (var produkt in Koszyk.koszyk)
+        {
+            Console.WriteLine(produkt);
+        }
+
+        Console.WriteLine($"Łączna cena: {ObliczLacznaCene():C}");
+
+        Console.WriteLine("Czy chcesz zachować rachunek?");
 
 
 
